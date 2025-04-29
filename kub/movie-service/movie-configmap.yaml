@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: movie-config
+  namespace: dev
+data:
+  POSTGRES_DB: movie_db
+  POSTGRES_HOST: movie-db
+  POSTGRES_PORT: "5432"

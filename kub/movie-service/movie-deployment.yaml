@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: movie-service
+  namespace: dev
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: movie-service
+  template:
+    metadata:
+      labels:
+        app: movie-service
+    spec:
+      containers:
+        - name: movie-service
+          image: hryla007/movieservice
+          ports:
+            - containerPort: 8000
+          envFrom:
+            - configMapRef:
+                name: movie-config
+            - secretRef:
+                name: movie-db-secret

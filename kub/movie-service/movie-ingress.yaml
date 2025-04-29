@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: movie-ingress
+  namespace: dev
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+    - host: datascientestcours.cloudns.ch
+      http:
+        paths:
+          - path: /api/v1/movies
+            pathType: Prefix
+            backend:
+              service:
+                name: movie-service
+                port:
+                  number: 80

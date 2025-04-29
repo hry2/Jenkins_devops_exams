@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cast-service
+  namespace: dev
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: cast-service
+  template:
+    metadata:
+      labels:
+        app: cast-service
+    spec:
+      containers:
+        - name: cast-service
+          image: hryla007/castservice
+          ports:
+            - containerPort: 8000
+          envFrom:
+            - configMapRef:
+                name: cast-config
+            - secretRef:
+                name: cast-db-secret

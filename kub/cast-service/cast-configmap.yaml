@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: cast-config
+  namespace: dev
+data:
+  POSTGRES_DB: cast_db
+  POSTGRES_HOST: cast-db
+  POSTGRES_PORT: "5432"
