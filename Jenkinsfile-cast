@@ -37,6 +37,9 @@ pipeline {
             steps {
                 dir('kub/cast-service') {
                     sh '''
+                    kubectl delete -f cast-ingress.yaml --ignore-not-found
+                    kubectl delete -f cast-deployment.yaml --ignore-not-found
+                    kubectl delete -f cast-service.yaml --ignore-not-found
                     kubectl apply -f cast-configmap.yaml
                     kubectl apply -f cast-secret.yaml
                     kubectl apply -f cast-db-service.yaml
