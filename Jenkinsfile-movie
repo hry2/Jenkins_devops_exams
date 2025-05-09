@@ -37,6 +37,9 @@ pipeline {
             steps {
                 dir('kub/movie-service') {
                     sh '''
+                    kubectl delete -f movie-ingress.yaml --ignore-not-found
+                    kubectl delete -f movie-deployment.yaml --ignore-not-found
+                    kubectl delete -f movie-service.yaml --ignore-not-found
                     kubectl apply -f movie-configmap.yaml
                     kubectl apply -f movie-secret.yaml
                     kubectl apply -f movie-db-service.yaml
