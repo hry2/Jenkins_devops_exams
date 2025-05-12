@@ -1,10 +1,11 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ .Release.Name }}-cast-db
+  name: {{ .Values.db.service.name }}
 spec:
-  selector:
-    app: {{ .Release.Name }}-cast-db
   ports:
-    - port: {{ .Values.postgresql.port }}
-      targetPort: {{ .Values.postgresql.port }}
+    - port: {{ .Values.db.service.port }}
+      targetPort: {{ .Values.db.service.targetPort }}
+  selector:
+    app: {{ .Values.db.appLabel }}
+  clusterIP: None
