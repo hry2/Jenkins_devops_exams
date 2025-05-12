@@ -1,17 +1,33 @@
-name: cast-service
 namespace: dev
-replicaCount: 3
 
 image:
   repository: hryla007/castservice
   tag: latest
+  pullPolicy: IfNotPresent
 
-containerPort: 8000
-
-configMapRef: cast-config
-secretRef: cast-db-secret
+service:
+  name: cast-service
+  port: 80
+  targetPort: 8000
 
 ingress:
   enabled: true
   host: datascientestcours.cloudns.ch
   path: /api/v1/casts
+  pathType: Prefix
+
+db:
+  appLabel: cast-db
+  service:
+    name: cast-db
+    port: 5432
+    targetPort: 5432
+  storage: 10Gi
+  config:
+    POSTGRES_DB: cast_db
+    POSTGRES_HOST: cast-db
+    POSTGRES_PORT: "5432"
+  secret:
+    POSTGRES_USER: cast_admin
+    POSTGRES_PASSWORD: cast_pwd
+    DATABASE_URI: postgresql://cast_admin:cast_pwd@cast-db.dev.svc.cluster.local:5432/cast_db
