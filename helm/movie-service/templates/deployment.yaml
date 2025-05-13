@@ -14,12 +14,10 @@ spec:
     spec:
       containers:
         - name: {{ .Values.service.name }}
-          image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
             - containerPort: {{ .Values.service.targetPort }}
           envFrom:
-            - configMapRef:
-                name: {{ .Values.configMapName }}
             - secretRef:
-                name: {{ .Values.secretName }}
+                name: {{ .Values.db.secret.name }}
