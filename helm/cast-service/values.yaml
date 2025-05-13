@@ -1,3 +1,5 @@
+replicaCount: 3
+
 image:
   repository: hryla007/castservice
   tag: latest
@@ -29,5 +31,4 @@ db:
     name: cast-db-secret
     POSTGRES_USER: cast_admin
     POSTGRES_PASSWORD: cast_pwd
-    # Ce champ est interpolé automatiquement par Helm, pas besoin de le modifier
     DATABASE_URI: postgresql://cast_admin:cast_pwd@cast-db.{{ .Release.Namespace }}.svc.cluster.local:5432/cast_db
