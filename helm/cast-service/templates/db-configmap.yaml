@@ -3,6 +3,6 @@ kind: ConfigMap
 metadata:
   name: {{ .Values.db.service.name }}-config
 data:
-  POSTGRES_DB: {{ .Values.db.config.POSTGRES_DB }}
-  POSTGRES_HOST: {{ .Values.db.config.POSTGRES_HOST }}
-  POSTGRES_PORT: {{ .Values.db.config.POSTGRES_PORT }}
+  POSTGRES_DB: "{{ .Values.db.config.POSTGRES_DB }}"
+  POSTGRES_HOST: "{{ .Values.db.config.POSTGRES_HOST }}"
+  POSTGRES_PORT: "{{ .Values.db.config.POSTGRES_PORT }}"
