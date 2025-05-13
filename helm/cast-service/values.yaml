@@ -26,6 +26,7 @@ db:
     POSTGRES_HOST: cast-db
     POSTGRES_PORT: "5432"
   secret:
+    name: cast-db-secret
     POSTGRES_USER: cast_admin
     POSTGRES_PASSWORD: cast_pwd
     # Ce champ est interpolé automatiquement par Helm, pas besoin de le modifier
