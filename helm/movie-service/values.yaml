@@ -1,5 +1,3 @@
-replicaCount: 3
-
 image:
   repository: hryla007/movieservice
   tag: latest
@@ -9,11 +7,24 @@ service:
   name: movie-service
   port: 80
   targetPort: 8000
+  nodePort: 30082
 
 ingress:
-  enabled: true
-  host: datascientestcours.cloudns.ch
-  path: /api/v1/movies
+  enabled: false  # Désactivé pour ce test, car on utilise NodePort
 
-configMapName: movie-config
-secretName: movie-db-secret
+db:
+  appLabel: movie-db
+  service:
+    name: movie-db
+    port: 5432
+    targetPort: 5432
+  storage: 10Gi
+  config:
+    POSTGRES_DB: movie_db
+    POSTGRES_HOST: movie-db
+    POSTGRES_PORT: "5432"
+  secret:
+    name: movie-db-secret
+    POSTGRES_USER: movie_admin
+    POSTGRES_PASSWORD: movie_pwd
+    DATABASE_URI: postgresql://movie_admin:movie_pwd@movie-db.{{ .Release.Namespace }}.svc.cluster.local:5432/movie_db
