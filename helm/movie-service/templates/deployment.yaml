@@ -21,3 +21,6 @@ spec:
           envFrom:
             - secretRef:
                 name: {{ .Values.db.secret.name }}
+          env:
+            - name: CAST_SERVICE_HOST_URL
+              value: {{ .Values.castService.url | quote }}
