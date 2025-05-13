@@ -1,3 +1,5 @@
+replicaCount: 3
+
 image:
   repository: hryla007/movieservice
   tag: latest
@@ -10,7 +12,10 @@ service:
   nodePort: 30082
 
 ingress:
-  enabled: false  # Désactivé pour ce test, car on utilise NodePort
+  enabled: false  # Désactivé pour NodePort
+  host: datascientestcours.cloudns.ch
+  path: /api/v1/movies
+  pathType: Prefix
 
 db:
   appLabel: movie-db
