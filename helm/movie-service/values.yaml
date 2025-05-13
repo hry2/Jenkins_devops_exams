@@ -11,6 +11,9 @@ service:
   targetPort: 8082
   nodePort: 30082
   type: NodePort
+  
+castService:
+  url: "http://cast-service.dev.svc.cluster.local:8081/api/v1/casts/"
 
 ingress:
   enabled: false
@@ -34,3 +37,5 @@ db:
     POSTGRES_USER: movie_admin
     POSTGRES_PASSWORD: movie_pwd
     DATABASE_URI: postgresql://movie_admin:movie_pwd@movie-db.{{ .Release.Namespace }}.svc.cluster.local:5432/movie_db
+
+
