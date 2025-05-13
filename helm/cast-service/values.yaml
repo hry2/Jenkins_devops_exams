@@ -7,8 +7,8 @@ image:
 
 service:
   name: cast-service
-  port: 80
-  targetPort: 8000
+  port: 8081
+  targetPort: 8081
 
 ingress:
   enabled: true
