@@ -20,7 +20,7 @@ spec:
             - containerPort: 5432
           envFrom:
             - secretRef:
-                name: {{ .Values.db.service.name }}-secret
+                name: {{ .Values.db.secret.name }}
             - configMapRef:
                 name: {{ .Values.db.service.name }}-config
           volumeMounts:
