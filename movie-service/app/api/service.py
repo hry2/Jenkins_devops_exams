@@ -1,6 +1,7 @@
 import os
 import httpx
 
+# Valeur par défaut pour usage local
 DEFAULT_CAST_SERVICE_HOST_URL = 'http://localhost:8002/api/v1/casts/'
 
 async def is_cast_present(cast_id: int) -> bool:
