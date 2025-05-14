@@ -5,6 +5,9 @@ image:
   tag: helm
   pullPolicy: IfNotPresent
 
+env:
+  castServiceHostUrl: http://cast-service.staging.svc.cluster.local:8081/api/v1/casts/
+
 service:
   name: movie-service
   port: 8082
